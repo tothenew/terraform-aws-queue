@@ -172,3 +172,13 @@ variable "volume_type" {
   default     = "gp3"
 }
 
+variable "audit_logs" {
+  type    = bool
+  default = false
+}
+
+variable "general_logs" {
+  type    = bool
+  default = false
+}
+

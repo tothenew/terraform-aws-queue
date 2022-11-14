@@ -1,6 +1,6 @@
 module "message_queue" {
   source              = "../"
-  security_groups  = ["sg-xxxxxxxxxxxxxxxxx"]
+  security_groups  = ["sg-xxxxxxxxxxxxxxxx"]
 
   ec2_subnet_id = "subnet-xxxxxxxxxxxxxxxx"
   key_name = "key_name"
@@ -18,15 +18,17 @@ module "message_queue" {
   engine_type = "ActiveMQ"
   engine_version = "5.15.14"
   auto_minor_version_upgrade = false
-  ActiveMQ_username   = "admin"
-  ActiveMQ_password   = "admin@123admin"
+  ActiveMQ_username   = "username"
+  ActiveMQ_password   = "password"
+  audit_logs = false
+  general_logs = false
 
-  create_aws_ActiveMQ     = true
-  create_aws_ec2_RabbitMQ = false
+  create_aws_ActiveMQ     = false
+  create_aws_ec2_RabbitMQ = true
 
   common_tags         = {
     "Project"     = "ToTheNew",
-    "Environment" = "dev"
+    "Environment" = "Non-prod"
   }
   project_name_prefix = "TTN"
 }

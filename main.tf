@@ -12,7 +12,10 @@ resource "aws_mq_broker" "AWS-ActiveMQ" {
   deployment_mode     = var.deployment_mode
   subnet_ids 		    = var.subnet_ids
   publicly_accessible = var.publicly_accessible
-
+  logs {
+    audit = var.audit_logs
+    general = var.general_logs
+  }
 
   user {
     username = var.ActiveMQ_username

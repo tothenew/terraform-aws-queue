@@ -18,8 +18,8 @@ module "message_queue" {
   engine_type = "ActiveMQ"
   engine_version = "5.15.14"
   auto_minor_version_upgrade = false
-  ActiveMQ_username   = "username"
-  ActiveMQ_password   = "password"
+  activemq_username   = "username"
+  activemq_password   = "password"
   audit_logs = false
   general_logs = false
 

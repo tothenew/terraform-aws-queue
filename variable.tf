@@ -71,12 +71,12 @@ variable "publicly_accessible" {
   default     = true
 }
 
-variable "ActiveMQ_username" {
+variable "activemq_username" {
   type        = string
   description = "Admin username"
 }
 
-variable "ActiveMQ_password" {
+variable "activemq_password" {
   type        = string
   description = "Admin password"
   sensitive   = true
@@ -181,4 +181,3 @@ variable "general_logs" {
   type    = bool
   default = false
 }
-

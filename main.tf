@@ -10,7 +10,7 @@ resource "aws_mq_broker" "AWS-ActiveMQ" {
   host_instance_type  = var.host_instance_type
   security_groups     = var.security_groups
   deployment_mode     = var.deployment_mode
-  subnet_ids 		    = var.subnet_ids
+  subnet_ids 		  = var.subnet_ids
   publicly_accessible = var.publicly_accessible
   logs {
     audit = var.audit_logs
@@ -18,8 +18,8 @@ resource "aws_mq_broker" "AWS-ActiveMQ" {
   }
 
   user {
-    username = var.ActiveMQ_username
-    password = var.ActiveMQ_password
+    username = var.activemq_username
+    password = var.activemq_password
     console_access = var.console_access
   }
 }

@@ -1,15 +1,15 @@
 module "message_queue" {
-  source              = "../"
-  security_groups  = ["sg-xxxxxxxxxxxx"]
+  source              = "git::https://github.com/tothenew/terraform-aws-queue.git"
+  security_groups  = ["sg-999999999999"]
 
-  ec2_subnet_id = "subnet-xxxxxxxxxxxxxx"
-  key_name = "key_name"
-  iam_instance_profile = "instance_profile"
+  ec2_subnet_id = "subnet-99999999999"
+  key_name = "tothenew"
+  iam_instance_profile = "tothenew"
   instance_type = "t3.medium"
-  disable_api_termination = false
-  disable_api_stop        = false
+  disable_api_termination = true
+  disable_api_stop        = true
 
-  subnet_ids          = ["subnet-xxxxxxxxxxxxx"]
+  subnet_ids          = ["subnet-99999999999","subnet-99999999999"]
   apply_immediately = false
   host_instance_type = "mq.t3.micro"
   deployment_mode    = "ACTIVE_STANDBY_MULTI_AZ"

@@ -82,7 +82,7 @@ Before this module can be used on a project, you must ensure that the following 
 | common_tags | A map to add common tags to all the resources	 | `map(string)` | `n/a` | yes |
 | master\_user\_password | Password of the security option enabled | `string` | `n/a` | no |
 | project | A string value to describe project of all the resources | `string` | `test` | yes |
-| ec2_subnet_id | Subnet Ids where server will be launched | `string` | n/a | yes |
+| ec2_subnet_id | Subnet Ids where server will be launched | `string` | `n/a` | yes |
 | key_name | Key name of the Key Pair to use for the instance | `string` | `n/a` | yes |
 | subnet\_ids | Subnet Ids where server will be launched | `list(string)` | n/a | yes |
 | iam_instance_profile | IAM Instance Profile to launch the instance with. Specified as the name of the Instance Profile | `sting` | `n/a` | yes |
@@ -102,9 +102,9 @@ Before this module can be used on a project, you must ensure that the following 
 
 | Name | Description |
 |------|-------------|
-| activemq_id | n/a |
-| activemq_url | n/a |
-| activemq_arn | n/a |
-| ec2_rabbitmq_private_ip | n/a |
+| activemq_id | `n/a` |
+| activemq_url | `n/a` |
+| activemq_arn | `n/a` |
+| ec2_rabbitmq_private_ip | `n/a` |
 
 

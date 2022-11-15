@@ -1,7 +1,7 @@
-# terraform-aws-eks
+# terraform-aws-queue
 
-[![Lint Status](https://github.com/tothenew/terraform-aws-eks/workflows/Lint/badge.svg)](https://github.com/tothenew/terraform-aws-eks/actions)
-[![LICENSE](https://img.shields.io/github/license/tothenew/terraform-aws-eks)](https://github.com/tothenew/terraform-aws-eks/blob/master/LICENSE)
+[![Lint Status](https://github.com/tothenew/terraform-aws-queue/workflows/Lint/badge.svg)](https://github.com/tothenew/terraform-aws-queue/actions)
+[![LICENSE](https://img.shields.io/github/license/tothenew/terraform-aws-queue)](https://github.com/tothenew/terraform-aws-queue/blob/master/LICENSE)
 
 The following content needed to be created and managed:
 

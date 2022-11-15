@@ -61,37 +61,43 @@ Before this module can be used on a project, you must ensure that the following 
 
 | Name | Description | Type | Default | Required |
 |------|-------------|------|---------|:--------:|
-| advanced\_security\_options\_enabled | Advance Security Option to Enable for Authentication | `bool` | `false` | no |
-| automated\_snapshot\_start\_hour | AWS elasticsearch snapshot start hour time | `number` | `22` | no |
-| availability\_zone\_count | Availability Zone count when zone is enabled | `number` | `2` | no |
-| cloudwatch\_logs\_retention | Cloudwatch logs of the AWS Elasticsearch retention period | `number` | `7` | no |
-| common\_tags | A map to add common tags to all the resources | `map(string)` | n/a | yes |
+| create_aws_activemq | If you want to create the AWS active-mq enable this check | `bool` | `bool` | no |
+| create_aws_ec2_rabbitmq | If you want to create the AWS EC2 instance rabbit-mq enable this check | `bool` | `true` | no |
+| project_name_prefix | A string value to describe prefix of all the resources | `string` | `n/a` | yes |
+| engine_type | Type of broker engine, `ActiveMQ` or `RabbitMQ` | `sting` | `ActiveMQ` | yes |
+| engine_version | The version of the broker engine | `string` | 5.15.14 | yes |
 | create\_aws\_ec2\_elasticsearch | If you want to create the AWS EC2 instance elasticsearch enable this check | `bool` | `true` | no |
-| create\_aws\_elasticsearch | If you want to create the AWS elasticsearch enable this check | `bool` | `false` | no |
-| create\_iam\_service\_linked\_role | Whether to create `AWSServiceRoleForAmazonElasticsearchService` service-linked role. Set it to `false` if you already have an ElasticSearch cluster created in the AWS account and AWSServiceRoleForAmazonElasticsearchService already exists. | `bool` | `false` | no |
-| delete\_on\_termination | Delete the volume after the termination of the EC2 | `bool` | `true` | no |
-| disable\_api\_stop | Disable API stop means disable instance stop | `bool` | `false` | no |
-| disable\_api\_termination | Disable API termination means disable instance termination | `bool` | `false` | no |
-| ebs\_optimized | EBS optimized enable | `bool` | `true` | no |
-| elasticsearch\_version | AWS Elasticsearch version default is 7.10 which is latest | `string` | `"7.10"` | no |
-| iam\_instance\_profile | IAM Profile name for launching the EC2 instance | `string` | `"undefined"` | no |
-| instance\_count | Number of node of AWS elasticsearch you want to launch | `number` | `1` | no |
-| instance\_type | Instance type of the Server | `string` | n/a | yes |
-| key\_name | Key name for launching the EC2 instance | `string` | `"undefined"` | no |
-| kms\_key\_id | KMS key ID for creating AWS resources | `string` | n/a | yes |
-| master\_user\_name | Username of the security option enabled | `string` | `""` | no |
-| master\_user\_password | Password of the security option enabled | `string` | `""` | no |
-| project\_name\_prefix | A string value to describe prefix of all the resources | `string` | n/a | yes |
-| region | A string value for Launch resources in which AWS Region | `string` | n/a | yes |
-| security\_group\_ids | A string value for Security Group ID | `list(string)` | n/a | yes |
-| source\_dest\_check | Source destination Check | `bool` | `true` | no |
+| storage_type | Type of storage | `string` | `ebs` | no |
+| auto_minor_version_upgrade | Enables automatic upgrades to new minor versions for brokers, as Apache releases the versions. | `bool` | `false` | no |
+| apply_immediately | Specifies whether any cluster modifications are applied immediately, or during the next maintenance window | `bool` | `false` | no |
+| host_instance_type | The broker's instance type. e.g. mq.t2.micro or mq.m4.large | `string` | `mq.m5.large` | no |
+| security\_group\_ids | A string value for Security Group ID | `list(string)` | `n/a` | yes |
+| deployment_mode | The deployment mode of the broker. Supported: SINGLE_INSTANCE and ACTIVE_STANDBY_MULTI_AZ | `string` | `SINGLE_INSTANCE` | no |
+| subnet\_ids | Subnet Ids where server will be launched | `list(string)` | `n/a` | yes |
+| publicly_accessible| Whether to enable connections from applications outside of the VPC that hosts the broker's subnets | `bool` | `true` | no |
+| activemq_username | Admin username | `string` | `n/a` | yes |
+| activemq_password | Admin password | `string` | `n/a` | yes |
+| console_access | Whether to enable console access | `bool` | `true` | no |
+| environment | environment where services need to be run | `string` | `dev` | no |
+| common_tags | A map to add common tags to all the resources	 | `map(string)` | `n/a` | yes |
+| master\_user\_password | Password of the security option enabled | `string` | `n/a` | no |
+| project | A string value to describe project of all the resources | `string` | `test` | yes |
+| ec2_subnet_id | Subnet Ids where server will be launched | `string` | n/a | yes |
+| key_name | Key name of the Key Pair to use for the instance | `string` | `n/a` | yes |
 | subnet\_ids | Subnet Ids where server will be launched | `list(string)` | n/a | yes |
-| volume\_encrypted | Volume can be encrypted through this check | `bool` | `true` | no |
-| volume\_size | Volume size of the EC2 instance | `number` | `100` | no |
-| volume\_type | Volume type for EC2 instance default latest type | `string` | `"gp3"` | no |
-| vpc\_id | A string value for VPC ID | `string` | n/a | yes |
-| zone\_awareness\_enabled | Zone Awareness enable for multi AZ | `bool` | `false` | no |
-
+| iam_instance_profile | IAM Instance Profile to launch the instance with. Specified as the name of the Instance Profile | `sting` | `n/a` | yes |
+| instance_type | EC2 Instance Type | `string` | `t3a.medium` | yes |
+| disable\_api\_termination | Disable API termination means disable instance termination | `bool` | `true` | no |
+| disable_api_stop | If true, enables EC2 Instance Stop Protection | `bool` | `false` | no |
+| ebs_optimized | If true, the launched EC2 instance will be EBS-optimized | `bool` | `true` | no |
+| source_dest_check | Source destination Check. Used for NAT or VPNs | `bool` | `true` | no |
+| delete_on_termination | Whether EBS volume will be deleted when instance gets deleted | `bool` | `true` | no |
+| kms_key_id | KMS key ID for creating AWS resources | `string` | `n/a` | yes |
+| encrypted | Whether EBS volume will be encrypted | `bool` | `true` | yes |
+| root_volume_size | Root volume size of the EC2 instance | `number` | `50` | yes |
+| volume_type | Volume type for EC2 instance default latest type | `string` | `gp3` | no |
+| audit_logs | KMS key ID for creating AWS resources | `bool` | `false` | no |
+| general_logs | KMS key ID for creating AWS resources | `bool` | `false` | no |
 ## Outputs
 
 | Name | Description |

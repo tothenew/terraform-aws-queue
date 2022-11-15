@@ -1,11 +1,13 @@
-variable "create_aws_ActiveMQ" {
-  type    = bool
-  default = false
+variable "create_aws_activemq" {
+  type        = bool
+  description = "If you want to create the AWS active-mq enable this check"
+  default     = false
 }
 
-variable "create_aws_ec2_RabbitMQ" {
-  type    = bool
-  default = true
+variable "create_aws_ec2_rabbitmq" {
+  type        = bool
+  description = "If you want to create the AWS EC2 instance rabbit-mq enable this check"
+  default     = true
 }
 
 variable "project_name_prefix" {
@@ -28,7 +30,7 @@ variable "engine_version" {
 variable "storage_type" {
   type        = string
   description = "Type of storage"
-  default = "ebs"
+  default     = "ebs"
 }
 
 variable "auto_minor_version_upgrade" {
@@ -74,18 +76,20 @@ variable "publicly_accessible" {
 variable "activemq_username" {
   type        = string
   description = "Admin username"
+  default     = ""
 }
 
 variable "activemq_password" {
   type        = string
   description = "Admin password"
+  default     = ""
   sensitive   = true
 }
 
 variable "console_access" {
   type        = bool
   description = "Whether to enable console access"
-  default = true
+  default     = true
 }
 
 variable "environment" {
@@ -173,11 +177,13 @@ variable "volume_type" {
 }
 
 variable "audit_logs" {
-  type    = bool
-  default = false
+  type        = bool
+  description = "If you want to enable audit log for active-mq this check"
+  default     = false
 }
 
 variable "general_logs" {
-  type    = bool
-  default = false
+  type        = bool
+  description = "If you want to enable general log for active-mq this check"
+  default     = false
 }

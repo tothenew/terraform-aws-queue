@@ -5,6 +5,6 @@ locals {
     tomap({
       "Project"     = var.project,
       "Environment" = var.environment
-    }  )
+    })
   )
 }

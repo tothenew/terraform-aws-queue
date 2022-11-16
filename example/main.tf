@@ -1,15 +1,14 @@
 module "message_queue" {
-  source              = "git::https://github.com/tothenew/terraform-aws-queue.git"
-  security_groups  = ["sg-999999999999"]
-
-  ec2_subnet_id = "subnet-99999999999"
-  key_name = "tothenew"
+  source              = "git::https://github.com/Nitintothenew/terraform-aws-queue.git"
+  security_groups  = ["sg-01953cb8e485e261f"]
+  ec2_subnet_id = "subnet-042869d84827c5368"
+  key_name = "defaultdev"
   iam_instance_profile = "tothenew"
   instance_type = "t3.medium"
+  kms_key_id              = "5a9d8a04-28a5-422b-9955-4527702f7c8e"
   disable_api_termination = true
   disable_api_stop        = true
-
-  subnet_ids          = ["subnet-99999999999","subnet-99999999999"]
+  subnet_ids          = ["subnet-042869d84827c5368","subnet-09fc7ac020494e9b8"]
   apply_immediately = false
   host_instance_type = "mq.t3.micro"
   deployment_mode    = "ACTIVE_STANDBY_MULTI_AZ"
@@ -19,17 +18,15 @@ module "message_queue" {
   engine_type = "ActiveMQ"
   engine_version = "5.15.14"
   auto_minor_version_upgrade = false
-  activemq_username   = "username"
-  activemq_password   = "password"
+  activemq_username   = "admin"
+  activemq_password   = "admin@asasasa123"
   audit_logs = false
   general_logs = false
-
-  create_aws_activemq     = true
-  create_aws_ec2_rabbitmq = false
-
+  create_aws_activemq     = false
+  create_aws_ec2_rabbitmq = true
   common_tags         = {
     "Project"     = "ToTheNew",
-    "Environment" = "Non-prod"
+    "Environment" = "dev"
   }
   project_name_prefix = "TTN"
 }

@@ -5,10 +5,10 @@
 ```
 module "message_queue" {
   source              = "git::https://github.com/tothenew/terraform-aws-queue.git"
-  security_groups  = ["sg-999999999999"]
   ec2_subnet_id = "subnet-99999999999"
   key_name = "tothenew"
-  iam_instance_profile = "tothenew"
+  vpc_id  = "vpc-xxxxxxxx"
+  vpc_cidr_block = "0.0.0.0/0"
   instance_type = "t3.medium"
   disable_api_termination = true
   disable_api_stop        = true
@@ -97,6 +97,11 @@ Before this module can be used on a project, you must ensure that the following 
 | volume_type | Volume type for EC2 instance default latest type | `string` | `gp3` | no |
 | audit_logs | KMS key ID for creating AWS resources | `bool` | `false` | no |
 | general_logs | KMS key ID for creating AWS resources | `bool` | `false` | no |
+| vpc_cidr_block | CIDR range of sg | `string` | `0.0.0.0/0` | yes |
+| vpc_id | vpc id for rabbit sg | `string` | `n/a` | yes |
+| rabbit_sg_name | SG name for rabbit | `string` | `rabbit-sg` | no |
+
+
 ## Outputs
 
 | Name | Description |

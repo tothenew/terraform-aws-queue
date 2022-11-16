@@ -48,14 +48,13 @@ Before this module can be used on a project, you must ensure that the following 
 
 ### Software Dependencies
 ## Terraform
-- [Terraform](https://www.terraform.io/downloads.html) >= 1.2.5
+- [Terraform](https://www.terraform.io/downloads.html) >= 1.3.0
 
 ## Providers
 
 | Name | Version |
 |------|---------|
 | aws | n/a |
-| template | n/a |
 
 ## Inputs
 

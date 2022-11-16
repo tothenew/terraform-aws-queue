@@ -10,6 +10,10 @@ output "activemq_arn" {
   value = var.create_aws_activemq && !var.create_aws_ec2_rabbitmq ? aws_mq_broker.activemq[0].arn : "undefined"
 }
 
-output "ec2_rabbitmq_private_ip" {
-  value = !var.create_aws_activemq && var.create_aws_ec2_rabbitmq ? aws_instance.ec2_rabbitmq[0].private_ip : "undefined"
+output "ec2_master_rabbitmq_private_ip" {
+  value = !var.create_aws_activemq && var.create_aws_ec2_rabbitmq ? aws_instance.ec2_rabbitmq_master[0].private_ip : "undefined"
+}
+
+output "ec2_worker_rabbitmq_private_ip" {
+  value = !var.create_aws_activemq && var.create_aws_ec2_rabbitmq ? aws_instance.ec2_rabbitmq_worker[0].private_ip : "undefined"
 }

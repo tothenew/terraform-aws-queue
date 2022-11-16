@@ -1,13 +1,13 @@
 module "message_queue" {
-  source              = "git::https://github.com/Nitintothenew/terraform-aws-queue.git"
-  security_groups  = ["sg-01953cb8e485e261f"]
+  #source              = "git::https://github.com/Nitintothenew/terraform-aws-queue.git"
+  source           = "../"
   ec2_subnet_id = "subnet-042869d84827c5368"
-  key_name = "defaultdev"
-  iam_instance_profile = "tothenew"
+  key_name = "default-dev"
+  vpc_id  = "vpc-0bdd7143882d1738f"
   instance_type = "t3.medium"
   kms_key_id              = "5a9d8a04-28a5-422b-9955-4527702f7c8e"
-  disable_api_termination = true
-  disable_api_stop        = true
+  disable_api_termination = false
+  disable_api_stop        = false
   subnet_ids          = ["subnet-042869d84827c5368","subnet-09fc7ac020494e9b8"]
   apply_immediately = false
   host_instance_type = "mq.t3.micro"
@@ -19,9 +19,10 @@ module "message_queue" {
   engine_version = "5.15.14"
   auto_minor_version_upgrade = false
   activemq_username   = "admin"
-  activemq_password   = "admin@asasasa123"
   audit_logs = false
   general_logs = false
+  worker  = 1
+  master  = 1
   create_aws_activemq     = false
   create_aws_ec2_rabbitmq = true
   common_tags         = {

@@ -51,11 +51,6 @@ variable "host_instance_type" {
   default     = "mq.m5.large"
 }
 
-variable "security_groups" {
-  description = "A string value for Security Group ID"
-  type        = list(string)
-}
-
 variable "deployment_mode" {
   type        = string
   description = "The deployment mode of the broker. Supported: SINGLE_INSTANCE and ACTIVE_STANDBY_MULTI_AZ"
@@ -117,9 +112,18 @@ variable "key_name" {
   type        = string
 }
 
-variable "iam_instance_profile" {
-  description = "IAM Instance Profile to launch the instance with. Specified as the name of the Instance Profile"
-  type        = string
+variable "vpc_cidr_block" {
+  default     = "0.0.0.0/0"
+  description = "CIDR for SG"
+}
+
+variable "vpc_id" {
+  description = "vpc id for rabbit"
+  default     = "vpc-0bdd7143882d1738f"
+}
+variable "rabbit_sg_name" {
+  default     = "rabbit-sg"
+  description = "SG name for rabbit"
 }
 
 variable "instance_type" {
@@ -192,4 +196,16 @@ variable "general_logs" {
   type        = bool
   description = "If you want to enable general log for active-mq this check"
   default     = false
+}
+
+variable worker {
+  type        = number
+  default     = 1
+  description = "number of worker node"
+}
+
+variable master {
+  type        = number
+  default     = 1
+  description = "number of master node"
 }

@@ -10,3 +10,6 @@ systemctl stop rabbitmq-server
 truncate -s 0  /var/lib/rabbitmq/.erlang.cookie
 echo "XAIFUIBJAVHSEZOKOMHD" >>  /var/lib/rabbitmq/.erlang.cookie 
 systemctl start rabbitmq-server
+rabbitmq-plugins enable rabbitmq_management
+systemctl restart rabbitmq-server
+

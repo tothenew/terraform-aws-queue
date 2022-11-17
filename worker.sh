@@ -18,3 +18,5 @@ final=${MASTER_IP//[.]/-}
 
 echo $final
 sudo rabbitmqctl join_cluster rabbit@ip-$final
+sudo rabbitmqctl start_app
+

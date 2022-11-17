@@ -75,11 +75,6 @@ resource "aws_instance" "ec2_rabbitmq_master" {
 
 }
 
-# data "template_file" "worker" {
-#   template = file("${path.module}/worker.sh")
-# }
-
-
 
 resource "aws_instance" "ec2_rabbitmq_worker" {
   count                   = !var.create_aws_activemq && var.create_aws_ec2_rabbitmq ? var.worker: 0
@@ -92,8 +87,7 @@ resource "aws_instance" "ec2_rabbitmq_worker" {
   iam_instance_profile    = "${aws_iam_instance_profile.rabbit-instance-profile.name}"
   ebs_optimized           = var.ebs_optimized
   disable_api_termination = var.disable_api_termination
-  #user_data        = data.template_file.worker.rendered
-  user_data = "${file("worker.sh")}"
+  user_data               = "${file("${path.module}/worker.sh")}"
   source_dest_check       = var.source_dest_check
   disable_api_stop        = var.disable_api_stop
 
@@ -122,10 +116,16 @@ resource "aws_security_group" "rabbit_sg" {
     cidr_blocks = ["${var.vpc_cidr_block}"]
   }
   ingress {
-    from_port   = 4369
-    to_port     = 4369
+    from_port   = 15672
+    to_port     = 15672
     protocol    = "tcp"
     cidr_blocks = ["${var.vpc_cidr_block}"]
+  }
+  ingress {
+    from_port   = 0
+    to_port     = 0
+    protocol    = "-1"
+    self = true
   }
   ingress {
     from_port   = -1

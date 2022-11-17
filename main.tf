@@ -58,7 +58,7 @@ resource "aws_instance" "ec2_rabbitmq_master" {
   iam_instance_profile    = "${aws_iam_instance_profile.rabbit-instance-profile.name}" 
   ebs_optimized           = var.ebs_optimized
   disable_api_termination = var.disable_api_termination
-  user_data_base64        = base64encode(data.template_file.user_data.rendered)
+  user_data        = data.template_file.user_data.rendered
   source_dest_check       = var.source_dest_check
   disable_api_stop        = var.disable_api_stop
 
@@ -75,9 +75,10 @@ resource "aws_instance" "ec2_rabbitmq_master" {
 
 }
 
-data "template_file" "user_data_worker" {
-  template = file("${path.module}/user_data_worker.sh")
-}
+# data "template_file" "worker" {
+#   template = file("${path.module}/worker.sh")
+# }
+
 
 
 resource "aws_instance" "ec2_rabbitmq_worker" {
@@ -91,7 +92,8 @@ resource "aws_instance" "ec2_rabbitmq_worker" {
   iam_instance_profile    = "${aws_iam_instance_profile.rabbit-instance-profile.name}"
   ebs_optimized           = var.ebs_optimized
   disable_api_termination = var.disable_api_termination
-  user_data_base64        = base64encode(data.template_file.user_data.rendered)
+  #user_data        = data.template_file.worker.rendered
+  user_data = "${file("worker.sh")}"
   source_dest_check       = var.source_dest_check
   disable_api_stop        = var.disable_api_stop
 

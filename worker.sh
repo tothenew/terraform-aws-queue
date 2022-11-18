@@ -13,12 +13,14 @@ sudo echo "erlang cookied added"
 sudo systemctl restart rabbitmq-server.service
 sudo rabbitmqctl start_app
 sudo rabbitmqctl stop_app
-sleep 5m
-MASTER_IP=$(aws ec2 describe-instances --filters "Name=tag:Name,Values=TTN-Rabbit-MQ-Master" "Name=instance-state-name,Values=running"  --query 'Reservations[*].Instances[*].{PrivateIP:PrivateIpAddress}' --output text --region us-east-1)
-
-final="${MASTER_IP//[.]/-}"
-
-echo "${final}"
-sudo rabbitmqctl join_cluster rabbit@ip-$final
+sleep 3m
+export MASTER_IP="$(aws ec2 describe-instances --filters "Name=tag:Name,Values=${Name}" "Name=instance-state-name,Values=running"  --query 'Reservations[*].Instances[*].{PrivateIP:PrivateIpAddress}' --output text --region ${region})"
+echo "$MASTER_IP"
+export FINAL="$(echo $MASTER_IP | sed 's/\./-/g')"
+echo "$FINAL"
+sudo rabbitmqctl join_cluster "rabbit@ip-$FINAL"
 sudo rabbitmqctl start_app
+sudo rabbitmq-plugins enable rabbitmq_management
+sudo systemctl restart rabbitmq-server.service
+
 

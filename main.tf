@@ -90,25 +90,21 @@ resource "aws_instance" "ec2_rabbitmq_master" {
   }
 
    depends_on = [
-    aws_ssm_parameter.rabbit_password
+    aws_ssm_parameter.rabbit_password,
+    aws_iam_instance_profile.rabbit-instance-profile
+    
   ]
 }
 
 data "template_file" "user_data_worker" {
-  template = file("${path.module}/user_data.sh")
+  template = file("${path.module}/worker.sh")
   vars = {
     environment_name = var.environment_name
     region           = var.region
+    Name             = "${var.project_name_prefix}-Rabbit-MQ-Master"
   }
 }
 
-# data "template_file" "user_data" {
-#   template = file("${path.module}/user_data.sh")
-#   vars = {
-#     environment_name = var.environment_name
-#     region           = var.region
-#   }
-# }
 
 resource "aws_instance" "ec2_rabbitmq_worker" {
   count                   = !var.create_aws_activemq && var.create_aws_ec2_rabbitmq ? var.worker: 0
@@ -137,7 +133,9 @@ resource "aws_instance" "ec2_rabbitmq_worker" {
     volume_type           = var.volume_type
   }
  depends_on = [
-    aws_instance.ec2_rabbitmq_master
+    aws_instance.ec2_rabbitmq_master,
+    aws_iam_instance_profile.rabbit-instance-profile
+
   ]
 }
 

@@ -11,9 +11,9 @@ systemctl stop rabbitmq-server
 truncate -s 0  /var/lib/rabbitmq/.erlang.cookie
 echo "XAIFUIBJAVHSEZOKOMHD" >>  /var/lib/rabbitmq/.erlang.cookie 
 systemctl start rabbitmq-server
-PASS=aws ssm get-parameter --name /$environment_name/rabbit/PASSWORD --output text --query Parameter.Value
-
-sudo rabbitmqctl add_user admin $PASS’
+export PASS="$(aws ssm get-parameter --name /${environment_name}/rabbit/PASSWORD --output text --query Parameter.Value --region ${region})"
+echo "$PASS"
+sudo rabbitmqctl add_user admin "$PASS"
 sudo rabbitmqctl set_user_tags admin administrator
 sudo rabbitmqctl set_permissions -p / admin ".*" ".*" ".*"
 sleep 10s

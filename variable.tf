@@ -209,3 +209,33 @@ variable master {
   default     = 1
   description = "number of master node"
 }
+
+variable "secret_method" {
+  description = "Use ssm for SSM parameters store which is the default option, or secretsmanager for AWS Secrets Manager"
+  type        = string
+  default     = "ssm"
+}
+
+variable "ssm_kms_key_id" {
+  type        = string
+  default     = ""
+  description = "KMS Key Id to use a CMK instead of default shared key for SSM parameters"
+}
+
+variable ssm_name {
+  type        = string
+  default     = "rabbit"
+  description = "Name of SSM parameter for rabbit"
+}
+
+variable environment_name {
+  type        = string
+  default     = "dev"
+  description = "description"
+}
+
+variable region {
+  type        = string
+  default     = "us-east-1"
+  description = "description"
+}

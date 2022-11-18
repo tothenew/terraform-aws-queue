@@ -1,14 +1,14 @@
 module "message_queue" {
   #source              = "git::https://github.com/Nitintothenew/terraform-aws-queue.git"
   source           = "../"
-  ec2_subnet_id = "subnet-0653cf0794e67394e"
-  key_name = "default-dev"
-  vpc_id  = "vpc-0bdd7143882d1738f"
-  instance_type = "t3a.medium"
-  kms_key_id              = "5a9d8a04-28a5-422b-9955-4527702f7c8e"
+  ec2_subnet_id = "subnet-0a20be4e3402adca2"
+  key_name = "nitin-test"
+  vpc_id  = "vpc-0b6c5559741a4361b"
+  instance_type = "c4.large"
+  kms_key_id              = "85f1d4da-7646-4c0a-bb38-80a43c39573e"
   disable_api_termination = false
   disable_api_stop        = false
-  subnet_ids          = ["subnet-0653cf0794e67394e","subnet-042869d84827c5368"]
+  subnet_ids          = ["subnet-0a20be4e3402adca2","subnet-0accc84f2ec96934d"]
   apply_immediately = false
   host_instance_type = "mq.t3.micro"
   deployment_mode    = "ACTIVE_STANDBY_MULTI_AZ"

@@ -23,8 +23,8 @@ module "message_queue" {
   general_logs = false
   worker  = 1
   master  = 1
-  create_aws_activemq     = false
-  create_aws_ec2_rabbitmq = true
+  create_aws_activemq     = true
+  create_aws_ec2_rabbitmq = false
   common_tags         = {
     "Project"     = "ToTheNew",
     "Environment" = "dev"

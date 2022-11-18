@@ -119,7 +119,7 @@ variable "vpc_cidr_block" {
 
 variable "vpc_id" {
   description = "vpc id for rabbit"
-  default     = "vpc-0bdd7143882d1738f"
+  default     = ""
 }
 variable "rabbit_sg_name" {
   default     = "rabbit-sg"
@@ -220,12 +220,6 @@ variable "ssm_kms_key_id" {
   type        = string
   default     = ""
   description = "KMS Key Id to use a CMK instead of default shared key for SSM parameters"
-}
-
-variable ssm_name {
-  type        = string
-  default     = "rabbit"
-  description = "Name of SSM parameter for rabbit"
 }
 
 variable environment_name {

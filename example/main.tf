@@ -1,6 +1,5 @@
 module "message_queue" {
-  source              = "git::https://github.com/Nitintothenew/terraform-aws-queue.git"
-  #source           = "../"
+  source              = "git::https://github.com/tothenew/terraform-aws-queue.git"
   ec2_subnet_id = "subnet-0a20be4e3402adca2"
   key_name = "nitin-test"
   vpc_id  = "vpc-0b6c5559741a4361b"
@@ -26,8 +25,8 @@ module "message_queue" {
   vpc_cidr_block = "0.0.0.0/0"  //This is for SG egress rules
   worker  = 1
   master  = 1
-  create_aws_activemq     = false
-  create_aws_ec2_rabbitmq = true
+  create_aws_activemq     = true
+  create_aws_ec2_rabbitmq = false
   common_tags         = {
     "Project"     = "ToTheNew",
     "Environment" = "dev"

@@ -225,11 +225,11 @@ variable "ssm_kms_key_id" {
 variable environment_name {
   type        = string
   default     = "dev"
-  description = "description"
+  description = "Environment name"
 }
 
 variable region {
   type        = string
   default     = "us-east-1"
-  description = "description"
+  description = "Region where resources will deploy"
 }

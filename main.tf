@@ -196,6 +196,12 @@ resource "aws_security_group" "rabbit_sg" {
     protocol    = "tcp"
     cidr_blocks = ["${var.vpc_cidr_block}"]
   }
+    ingress {
+    from_port   = 8162
+    to_port     = 8162
+    protocol    = "tcp"
+    cidr_blocks = ["${var.vpc_cidr_block}"]
+  }
   ingress {
     from_port   = 0
     to_port     = 0

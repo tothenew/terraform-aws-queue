@@ -26,7 +26,12 @@ module "message_queue" {
   activemq_password   = "password"
   audit_logs = false
   general_logs = false
-
+  root_volume_size = 50
+  region  = "us-east-1"
+  vpc_cidr_block = "0.0.0.0/0"  //This is for SG egress rules
+  worker  = 1
+  master  = 1
+  
   create_aws_activemq     = true
   create_aws_ec2_rabbitmq = false
 
@@ -100,6 +105,10 @@ Before this module can be used on a project, you must ensure that the following 
 | vpc_cidr_block | CIDR range of sg | `string` | `0.0.0.0/0` | yes |
 | vpc_id | vpc id for rabbit sg | `string` | `n/a` | yes |
 | rabbit_sg_name | SG name for rabbit | `string` | `rabbit-sg` | no |
+| region | Region where resources will deploy | `string` | `us-east-1` | yes |
+| environment_name | Environment name | `string` | `dev` | yes |
+| root_volume_size | Root volume size of the EC2 instance | `number` | `50` | no |
+
 
 
 ## Outputs

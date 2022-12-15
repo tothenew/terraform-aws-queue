@@ -25,8 +25,8 @@ module "message_queue" {
   vpc_cidr_block = "0.0.0.0/0"  //This is for SG egress rules
   worker  = 1
   master  = 1
-  create_aws_activemq     = true
-  create_aws_ec2_rabbitmq = false
+  create_aws_activemq     = false
+  create_aws_ec2_rabbitmq = true
   common_tags         = {
     "Project"     = "ToTheNew",
     "Environment" = "dev"

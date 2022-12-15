@@ -158,7 +158,6 @@ resource "aws_instance" "ec2_rabbitmq_worker" {
   iam_instance_profile    = "${aws_iam_instance_profile.rabbit-instance-profile.name}"
   ebs_optimized           = var.ebs_optimized
   disable_api_termination = var.disable_api_termination
-  #user_data               = "${file("${path.module}/worker.sh")}"
   user_data               = data.template_file.user_data_worker.rendered
   source_dest_check       = var.source_dest_check
   disable_api_stop        = var.disable_api_stop
@@ -238,17 +237,17 @@ data "aws_iam_policy_document" "instance-assume-role-policy" {
   }
 }
 resource "aws_iam_role" "rabbit-role" {
-  name               = "rabbit_role"
+  name               = "${var.environment_name}-${var.region}-rabbit_role"
   path               = "/system/"
   assume_role_policy = "${data.aws_iam_policy_document.instance-assume-role-policy.json}"
   managed_policy_arns = ["arn:aws:iam::aws:policy/service-role/AmazonEC2RoleforSSM"]
 }
 resource "aws_iam_instance_profile" "rabbit-instance-profile" {
-  name = "rabbit-instance-profile"
+  name = "${var.environment_name}-${var.region}-rabbit-instance-profile"
   role = "${aws_iam_role.rabbit-role.name}"
 }
 resource "aws_iam_role_policy" "ec2-describe-instance-policy" {
-  name = "ec2-describe-instance-policy"
+  name = "${var.environment_name}-${var.region}-ec2-describe-instance-policy"
   role = "${aws_iam_role.rabbit-role.id}"
   policy = <<EOF
 {

@@ -233,3 +233,8 @@ variable region {
   default     = "us-east-1"
   description = "Region where resources will deploy"
 }
+variable "ami_id" {
+  type = string
+  description = "AMI id of the Amazon Linux 2"
+  default = ""
+}

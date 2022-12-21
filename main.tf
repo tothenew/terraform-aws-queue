@@ -109,7 +109,7 @@ data "template_file" "user_data" {
 resource "aws_instance" "ec2_rabbitmq_master" {
   count                   = !var.create_aws_activemq && var.create_aws_ec2_rabbitmq ? var.master: 0
                          
-  ami                     = data.aws_ami.amazon-linux-2.id
+  ami                     = var.ami_id == "" ? data.aws_ami.amazon-linux-2.id : var.ami_id
   instance_type           = var.instance_type
   subnet_id               = var.ec2_subnet_id
   vpc_security_group_ids  = ["${aws_security_group.rabbit_sg.id}"]

@@ -26,7 +26,7 @@ resource "aws_ssm_parameter" "rabbit_endpoint" {
   name        = "/${var.environment_name}/rabbit/ENDPOINT"
   description = "Rabbit Endpoint"
   type        = "String"
-  value       = "${aws_instance.ec2_rabbitmq_master[0].private_ip}:15672"
+  value       = "${aws_instance.ec2_rabbitmq_master[0].private_ip}"
   depends_on = [
     aws_instance.ec2_rabbitmq_master
   ]
@@ -192,6 +192,12 @@ resource "aws_security_group" "rabbit_sg" {
   ingress {
     from_port   = 15672
     to_port     = 15672
+    protocol    = "tcp"
+    cidr_blocks = ["${var.vpc_cidr_block}"]
+  }
+  ingress {
+    from_port   = 5672
+    to_port     = 5672
     protocol    = "tcp"
     cidr_blocks = ["${var.vpc_cidr_block}"]
   }

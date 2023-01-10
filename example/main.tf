@@ -1,7 +1,7 @@
 module "message_queue" {
   source              = "git::https://github.com/tothenew/terraform-aws-queue.git"
   ec2_subnet_id = "subnet-0a20be4e3402adca2"
-  key_name = "test"
+  key_name = "poc"
   vpc_id  = "vpc-0b6c5559741a4361b"
   instance_type = "c4.large"
   kms_key_id              = "85f1d4da-7646-4c0a-bb38-80a43c39573e"

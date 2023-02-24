@@ -154,7 +154,7 @@ resource "aws_instance" "ec2_rabbitmq_worker" {
   instance_type           = var.instance_type
   subnet_id               = var.ec2_subnet_id
   vpc_security_group_ids  = ["${aws_security_group.rabbit_sg.id}"]
-  key_name                = var.key_name
+  key_name                = try(var.key_name,"")
   iam_instance_profile    = "${aws_iam_instance_profile.rabbit-instance-profile.name}"
   ebs_optimized           = var.ebs_optimized
   disable_api_termination = var.disable_api_termination

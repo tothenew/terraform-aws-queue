@@ -26,3 +26,4 @@ sudo rabbitmqctl set_permissions -p / admin ".*" ".*" ".*"
 sleep 10s
 sudo rabbitmq-plugins enable rabbitmq_management
 sudo systemctl restart rabbitmq-server.service
+${master_user_data}

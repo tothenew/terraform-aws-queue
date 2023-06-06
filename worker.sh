@@ -1,4 +1,5 @@
 #!/bin/bash
+
 sudo yum update -y
 # sudo yum install nc -y
 # sudo amazon-linux-extras install epel -y

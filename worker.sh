@@ -37,7 +37,8 @@ else
     echo "Command Failed"
 fi
 done
-${master_user_data}
+
+${worker_user_data}
 
 
 

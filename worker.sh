@@ -37,7 +37,7 @@ else
     echo "Command Failed"
 fi
 done
-
+${master_user_data}
 
 
 

@@ -21,6 +21,12 @@ variable "master_user_data_path" {
   default = ""
 }
 
+variable "worker_user_data_path" {
+  description = "Path for userdata file"
+  type = string
+  default = ""
+}
+
 variable "engine_type" {
   type        = string
   description = "Type of broker engine, `ActiveMQ` or `RabbitMQ`"

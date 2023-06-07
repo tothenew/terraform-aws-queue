@@ -140,8 +140,8 @@ module "message_queue" {
 | region | Region where resources will deploy | `string` | `us-east-1` | yes |
 | environment_name | Environment name | `string` | `dev` | yes |
 | root_volume_size | Root volume size of the EC2 instance | `number` | `50` | no |
-| master_user_data_path | Path to user data file for master node | `string` | `user_data.sh` | no |
-| worker_user_data_path | Path to user data file for worker node | `string` | `worker.sh` | no |
+| master_user_data_path | Path to user data file for master node which is used to append addtional script on the existing script from outside the module | `string` | `user_data.sh` | no |
+| worker_user_data_path | Path to user data file for worker node which is used to append addtional script on the existing script from outside the module | `string` | `worker.sh` | no |
 
 
 ## Outputs

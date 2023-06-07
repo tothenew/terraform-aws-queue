@@ -103,6 +103,7 @@ data "template_file" "user_data" {
   vars = {
     environment_name = var.environment_name
     region           = var.region
+    master_user_data = file(var.master_user_data_path == "" ? "" : var.master_user_data_path)
   }
 }
 
@@ -143,6 +144,7 @@ data "template_file" "user_data_worker" {
     environment_name = var.environment_name
     region           = var.region
     Name             = "${var.project_name_prefix}-Rabbit-MQ-Master"
+    worker_user_data = file(var.worker_user_data_path == "" ? "" : var.worker_user_data_path)
   }
 }
 

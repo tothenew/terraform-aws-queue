@@ -246,7 +246,7 @@ resource "aws_iam_role" "rabbit-role" {
   name               = "${var.environment_name}-${var.region}-rabbit_role"
   path               = "/system/"
   assume_role_policy = "${data.aws_iam_policy_document.instance-assume-role-policy.json}"
-  managed_policy_arns = ["arn:aws:iam::aws:policy/service-role/AmazonEC2RoleforSSM"]
+  managed_policy_arns = ["arn:aws:iam::aws:policy/AmazonSSMManagedInstanceCore"]
 }
 resource "aws_iam_instance_profile" "rabbit-instance-profile" {
   name = "${var.environment_name}-${var.region}-rabbit-instance-profile"

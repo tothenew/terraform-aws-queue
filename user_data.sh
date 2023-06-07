@@ -16,13 +16,10 @@ systemctl stop rabbitmq-server.service
 truncate -s 0  /var/lib/rabbitmq/.erlang.cookie
 echo "XAIFUIBJAVHSEZOKOMHD" >>  /var/lib/rabbitmq/.erlang.cookie 
 systemctl start rabbitmq-server.service
-echo "$environment_name"
-echo "---"
-echo "$region"
 echo "------"
-echo "${environment_name}"
+echo "Env: ${environment_name}"
 echo "------"
-echo "${region}"
+echo "Region: ${region}"
 export USERNAME="$(aws ssm get-parameter --name /${environment_name}/rabbit/USERNAME --with-decryption --output text --query Parameter.Value --region ${region})"
 echo "$USERNAME"
 export PASS="$(aws ssm get-parameter --name /${environment_name}/rabbit/PASSWORD --with-decryption --output text --query Parameter.Value --region ${region})"

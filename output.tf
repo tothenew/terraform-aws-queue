@@ -17,3 +17,7 @@
 # output "ec2_worker_rabbitmq_private_ip" {
 #   value = !var.create_aws_activemq && var.create_aws_ec2_rabbitmq ? aws_instance.ec2_rabbitmq_worker[0].private_ip : "undefined"
 # }
+
+output "security_group_id" {
+  value = aws_security_group.rabbit_sg.id
+}

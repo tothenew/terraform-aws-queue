@@ -104,8 +104,8 @@ data "cloudinit_config" "server_config" {
   part {
     content_type = "text/cloud-config"
     content = templatefile("${path.module}/userdata.yml", {
-      environment_name: var.environment_name
-      region: var.region
+      environment_name = var.environment_name
+      region = var.region
     })
   }
 }

@@ -21,9 +21,9 @@ runcmd:
   - echo "XAIFUIBJAVHSEZOKOMHD" >> /var/lib/rabbitmq/.erlang.cookie
   - systemctl start rabbitmq-server.service
   - echo "------"
-  - echo "Env: ${environment_name}"
+  - echo "${environment_name}"
   - echo "------"
-  - echo "Region: ${region}"
+  - echo "${region}"
   - export USERNAME="\$(aws ssm get-parameter --name /${environment_name}/rabbit/USERNAME --with-decryption --output text --query Parameter.Value --region \${region})"
   - echo "\$USERNAME"
   - export PASS="\$(aws ssm get-parameter --name /${environment_name}/rabbit/PASSWORD --with-decryption --output text --query Parameter.Value --region \${region})"

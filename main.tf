@@ -98,11 +98,15 @@ data "aws_ami" "amazon-linux-2" {
   owners = ["amazon"]
 }
 
-data "template_file" "user_data" {
-  template = file("${path.module}/user_data.sh")
-  vars = {
-    environment_name = var.environment_name
-    region           = var.region
+data "cloudinit_config" "server_config" {
+  gzip          = true
+  base64_encode = true
+  part {
+    content_type = "text/cloud-config"
+    content = templatefile("${path.module}/userdata.yml"), {
+      environment_name = var.environment_name
+      region           = var.region
+    }
   }
 }
 
@@ -117,7 +121,7 @@ resource "aws_instance" "ec2_rabbitmq_master" {
   iam_instance_profile    = "${aws_iam_instance_profile.rabbit-instance-profile.name}" 
   ebs_optimized           = var.ebs_optimized
   disable_api_termination = var.disable_api_termination
-  user_data        = data.template_file.user_data.rendered
+  user_data        = data.cloudinit_config.server_config.rendered
   source_dest_check       = var.source_dest_check
   disable_api_stop        = var.disable_api_stop
 

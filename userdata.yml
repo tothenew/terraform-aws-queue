@@ -24,11 +24,11 @@ runcmd:
   - echo "${environment_name}"
   - echo "------"
   - echo "${region}"
-  - export USERNAME="\$(aws ssm get-parameter --name /${environment_name}/rabbit/USERNAME --with-decryption --output text --query Parameter.Value --region \${region})"
-  - echo "\$USERNAME"
-  - export PASS="\$(aws ssm get-parameter --name /${environment_name}/rabbit/PASSWORD --with-decryption --output text --query Parameter.Value --region \${region})"
-  - echo "\$PASS"
-  - sudo rabbitmqctl add_user "\$USERNAME" "\$PASS"
+  - export USERNAME="$(aws ssm get-parameter --name /${environment_name}/rabbit/USERNAME --with-decryption --output text --query Parameter.Value --region ${region})"
+  - echo "$USERNAME"
+  - export PASS="$(aws ssm get-parameter --name /${environment_name}/rabbit/PASSWORD --with-decryption --output text --query Parameter.Value --region ${region})"
+  - echo "$PASS"
+  - sudo rabbitmqctl add_user "$USERNAME" "$PASS"
   - sudo rabbitmqctl set_user_tags admin administrator
   - sudo rabbitmqctl set_permissions -p / admin ".*" ".*" ".*"
   - sleep 10s

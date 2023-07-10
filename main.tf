@@ -141,12 +141,17 @@ resource "aws_instance" "ec2_rabbitmq_master" {
   ]
 }
 
-data "template_file" "user_data_worker" {
-  template = file("${path.module}/worker.sh")
-  vars = {
+
+data "template_cloudinit_config" "worker_config" {
+  gzip          = true
+  base64_encode = true
+  part {
+    content_type = "text/cloud-config"
+    content = templatefile("${path.module}/worker.yml", {
     environment_name = var.environment_name
     region           = var.region
     Name             = "${var.project_name_prefix}-Rabbit-MQ-Master"
+    })
   }
 }
 
@@ -162,7 +167,7 @@ resource "aws_instance" "ec2_rabbitmq_worker" {
   iam_instance_profile    = "${aws_iam_instance_profile.rabbit-instance-profile.name}"
   ebs_optimized           = var.ebs_optimized
   disable_api_termination = var.disable_api_termination
-  user_data               = data.template_file.user_data_worker.rendered
+  user_data               = data.template_cloudinit_config.worker_config.rendered
   source_dest_check       = var.source_dest_check
   disable_api_stop        = var.disable_api_stop
 

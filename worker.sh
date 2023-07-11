@@ -1,5 +1,7 @@
 #!/bin/bash
 
+
+# --- bash script is not in use --- #
 sudo yum update -y
 export MASTER_IP="$(aws ec2 describe-instances --filters "Name=tag:Name,Values=${Name}" "Name=instance-state-name,Values=running"  --query 'Reservations[*].Instances[*].{PrivateIP:PrivateIpAddress}' --output text --region ${region})"
 echo "$MASTER_IP master">/etc/hosts

@@ -17,6 +17,7 @@ sudo echo "erlang cookied added"
 sudo systemctl restart rabbitmq-server.service
 sudo rabbitmqctl stop_app
 sudo rabbitmqctl reset && sudo rabbitmqctl join_cluster rabbit@master
+sudo rabbitmqctl start_app
 
 
 

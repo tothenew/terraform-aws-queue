@@ -157,7 +157,6 @@ resource "aws_instance" "ec2_rabbitmq_worker" {
   iam_instance_profile    = "${aws_iam_instance_profile.rabbit-instance-profile.name}"
   ebs_optimized           = var.ebs_optimized
   disable_api_termination = var.disable_api_termination
-  # user_data               = data.template_cloudinit_config.worker_config.rendered
   user_data               = data.template_file.user_data_worker.rendered
   source_dest_check       = var.source_dest_check
   disable_api_stop        = var.disable_api_stop

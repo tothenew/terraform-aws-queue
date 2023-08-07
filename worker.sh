@@ -15,6 +15,7 @@ sudo truncate -s 0  /var/lib/rabbitmq/.erlang.cookie
 sudo echo "XAIFUIBJAVHSEZOKOMHD" >>  /var/lib/rabbitmq/.erlang.cookie
 sudo echo "erlang cookied added"
 sudo systemctl restart rabbitmq-server.service
+until sudo rabbitmqctl -n rabbit@master cluster_status; do sleep 5; done 
 sudo rabbitmqctl stop_app
 sudo rabbitmqctl reset && sudo rabbitmqctl join_cluster rabbit@master
 sudo rabbitmqctl start_app

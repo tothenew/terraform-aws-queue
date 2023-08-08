@@ -137,6 +137,7 @@ resource "aws_instance" "ec2_rabbitmq_master" {
   ]
 }
 
+
 data "template_file" "user_data_worker" {
   template = file("${path.module}/worker.sh")
   vars = {
@@ -145,8 +146,6 @@ data "template_file" "user_data_worker" {
     Name             = "${var.project_name_prefix}-Rabbit-MQ-Master"
   }
 }
-
-
 resource "aws_instance" "ec2_rabbitmq_worker" {
   count                   = !var.create_aws_activemq && var.create_aws_ec2_rabbitmq ? var.worker: 0
   
@@ -246,7 +245,7 @@ resource "aws_iam_role" "rabbit-role" {
   name               = "${var.environment_name}-${var.region}-rabbit_role"
   path               = "/system/"
   assume_role_policy = "${data.aws_iam_policy_document.instance-assume-role-policy.json}"
-  managed_policy_arns = ["arn:aws:iam::aws:policy/service-role/AmazonEC2RoleforSSM"]
+  managed_policy_arns = ["arn:aws:iam::aws:policy/AmazonSSMManagedInstanceCore"]
 }
 resource "aws_iam_instance_profile" "rabbit-instance-profile" {
   name = "${var.environment_name}-${var.region}-rabbit-instance-profile"

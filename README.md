@@ -83,10 +83,10 @@ module "message_queue" {
   create_aws_ec2_rabbitmq = false
 
   common_tags         = {
-    "Project"     = "ToTheNew",
+    "Project"     = "ProjectQ",
     "Environment" = "dev"
   }
-  project_name_prefix = "TTN"
+  project_name_prefix = "ProjectTest"
 }
 }
 ```

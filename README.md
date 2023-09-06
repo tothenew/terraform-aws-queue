@@ -139,7 +139,8 @@ module "message_queue" {
 | rabbit_sg_name | SG name for rabbit | `string` | `rabbit-sg` | no |
 | region | Region where resources will deploy | `string` | `us-east-1` | yes |
 | environment_name | Environment name | `string` | `dev` | yes |
-| root_volume_size | Root volume size of the EC2 instance | `number` | `50` | no |
+| master_user_data_path | Path to user data file for master node which is used to append addtional script on the existing script from outside the module | `string` | `user_data.sh` | no |
+| worker_user_data_path | Path to user data file for worker node which is used to append addtional script on the existing script from outside the module | `string` | `worker.sh` | no |
 
 
 

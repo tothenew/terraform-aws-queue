@@ -3,7 +3,7 @@
     special = false
   }
 
-resource "aws_ssm_parameter" "rabbit_password" {
+resource "aws_ssm_parameter" "rabbit_pass" {
   count       = !var.create_aws_activemq && var.create_aws_ec2_rabbitmq ? 1: 0
   name        = "/${var.environment_name}/rabbit/PASSWORD"
   description = "Rabbit Password"
@@ -12,7 +12,7 @@ resource "aws_ssm_parameter" "rabbit_password" {
 
 }
 
-resource "aws_ssm_parameter" "rabbit_username" {
+resource "aws_ssm_parameter" "rabbit_user" {
   count       = !var.create_aws_activemq && var.create_aws_ec2_rabbitmq ? 1: 0
   name        = "/${var.environment_name}/rabbit/USERNAME"
   description = "Rabbit Username"
@@ -244,7 +244,7 @@ data "aws_iam_policy_document" "instance-assume-role-policy" {
     }
   }
 }
-resource "aws_iam_role" "rabbit-role" {
+resource "aws_iam_role" "rabbit-role1" {
   name               = "${var.environment_name}-${var.region}-rabbit_role"
   path               = "/system/"
   assume_role_policy = "${data.aws_iam_policy_document.instance-assume-role-policy.json}"
@@ -252,11 +252,11 @@ resource "aws_iam_role" "rabbit-role" {
 }
 resource "aws_iam_instance_profile" "rabbit-instance-profile" {
   name = "${var.environment_name}-${var.region}-rabbit-instance-profile"
-  role = "${aws_iam_role.rabbit-role.name}"
+  role = "${aws_iam_role.rabbit-role1.name}"
 }
 resource "aws_iam_role_policy" "ec2-describe-instance-policy" {
   name = "${var.environment_name}-${var.region}-ec2-describe-instance-policy"
-  role = "${aws_iam_role.rabbit-role.id}"
+  role = "${aws_iam_role.rabbit-role1.id}"
   policy = <<EOF
 {
       "Version": "2012-10-17",
